@@ -1,6 +1,6 @@
 ## 📌 프로젝트 구조
 
-### Client
+### Server
 
 - `bin`: 서버 실행 파일
 - `controllers`: 프로젝트의 요청 로직을 처리하는 함수
