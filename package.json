@@ -1,0 +1,38 @@
+{
+  "name": "testy95-server",
+  "version": "1.0.0",
+  "description": "testy95-server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "lint-staged": "lint-staged",
+    "dev": "NODE_ENV=development nodemon ./bin/www",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-errors": "^2.0.0",
+    "mongoose": "^8.5.2",
+    "morgan": "^1.10.0",
+    "node-wit": "^6.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.8",
+    "nodemon": "^3.1.4",
+    "prettier": "3.3.3"
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
+  }
+}
