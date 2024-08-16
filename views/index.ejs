@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Methods</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .code {
+      border: 1px solid red;
+    }
+  </style>
+  <div>
+    <div class="container">
+      <% data.forEach((item) => { %>
+          <div class="code">
+            <p>
+              Keyword:
+              <%= item.keyword %>
+            </p>
+            <p>
+              Snippet:
+              <%= item.snippet %>
+            </p>
+            <p>
+              categories:
+              <%= item.categories %>
+            </p>
+          </div>
+      <% }) %>
+    </div>
+  </div>
+  </body>
+</html>
