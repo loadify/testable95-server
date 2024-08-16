@@ -2,7 +2,7 @@ const createError = require("http-errors");
 
 const Method = require("../models/Method");
 
-exports.search = async (req, res, next) => {
+exports.findAllMethods = async (req, res, next) => {
   try {
     const methods = await Method.find();
     res.render("index", {
