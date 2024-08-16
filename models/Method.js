@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const MethodSchema = new Schema({
   snippet: { type: String, required: true },
-  keyword: { type: String },
+  keyword: { type: String, required: true },
   categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
 });
 
