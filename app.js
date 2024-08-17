@@ -8,6 +8,8 @@ const cors = require("cors");
 const connectDB = require("./database/connection");
 
 const index = require("./routes/index");
+const testCodes = require("./routes/testCodes");
+const inputForm = require("./routes/inputForm");
 
 const app = express();
 
@@ -31,6 +33,8 @@ app.use(
 );
 
 app.use("/", index);
+app.use("/input", inputForm);
+app.use("/test-codes", testCodes);
 
 app.use((req, res, next) => {
   next(createError(404));
