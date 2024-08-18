@@ -3,7 +3,7 @@ const createError = require("http-errors");
 const MethodBlock = require("../models/MethodBlock");
 const InputBlock = require("../models/InputBlock");
 
-exports.renderBlocks = async (req, res, next) => {
+const renderBlocks = async (req, res, next) => {
   try {
     const methodBlocks = await MethodBlock.find();
     const inputBlocks = await InputBlock.find();
@@ -13,3 +13,5 @@ exports.renderBlocks = async (req, res, next) => {
     next(createError(500, "Server Error"));
   }
 };
+
+module.exports = renderBlocks;
