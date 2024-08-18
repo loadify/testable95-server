@@ -2,8 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-const { findAllMethods } = require("../controllers/search");
+const { renderBlocks } = require("../controllers/render");
 
-router.get("/", findAllMethods);
+router.get("/", renderBlocks);
 
 module.exports = router;
