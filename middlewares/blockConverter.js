@@ -7,22 +7,22 @@ const client = new Wit({
 const convertBlocksToTestCode = async (req, res, next) => {
   try {
     const lineBlocks = req.body;
-    const keywordTemp = [];
+    const messageResponses = [];
 
     lineBlocks.forEach((lineBlock) => {
       if (lineBlock.data.length === 1) {
-        keywordTemp.push(client.message(lineBlock.data[0], {}));
+        messageResponses.push(client.message(lineBlock.data[0], {}));
       } else {
-        const keyword = lineBlock.data.map((block) =>
+        const messageResponse = lineBlock.data.map((block) =>
           client.message(block, {}),
         );
-        keywordTemp.push(...keyword);
+        messageResponses.push(...messageResponse);
       }
     });
 
-    const keywords = await Promise.all(keywordTemp);
+    const witAiResponses = await Promise.all(messageResponses);
 
-    res.locals.keywords = keywords;
+    res.locals.witAiResponses = witAiResponses;
     next();
   } catch (error) {
     console.error("error:", error);
