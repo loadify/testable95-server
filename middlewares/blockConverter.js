@@ -7,20 +7,20 @@ const client = new Wit({
 const convertBlocksToTestCode = async (req, res, next) => {
   try {
     const lineBlocks = req.body;
-    const entireBlockForWitAi = [];
+    const keywordTemp = [];
 
     lineBlocks.forEach((lineBlock) => {
       if (lineBlock.data.length === 1) {
-        entireBlockForWitAi.push(client.message(lineBlock.data[0], {}));
+        keywordTemp.push(client.message(lineBlock.data[0], {}));
       } else {
-        const blockForWitAi = lineBlock.data.map((block) =>
+        const keyword = lineBlock.data.map((block) =>
           client.message(block, {}),
         );
-        entireBlockForWitAi.push(...blockForWitAi);
+        keywordTemp.push(...keyword);
       }
     });
 
-    const keywords = await Promise.all(entireBlockForWitAi);
+    const keywords = await Promise.all(keywordTemp);
 
     res.locals.keywords = keywords;
     next();
