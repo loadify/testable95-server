@@ -20,9 +20,9 @@ const convertBlocksToTestCode = async (req, res, next) => {
       }
     });
 
-    const witAiResponses = await Promise.all(messageResponses);
+    const keywords = await Promise.all(messageResponses);
 
-    res.locals.witAiResponses = witAiResponses;
+    res.locals.keywords = keywords;
     next();
   } catch (error) {
     console.error("error:", error);
