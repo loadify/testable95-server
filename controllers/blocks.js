@@ -19,14 +19,16 @@ const handleBlocks = async (req, res, next) => {
         }
       });
 
-      const testCodes = await client.message(naturalLanguage, {});
+      const keywords = await client.message(naturalLanguage, {});
 
-      return testCodes;
+      return keywords;
     });
 
-    const keywords = await Promise.all(messageResponses);
+    const keywordsTemp = await Promise.all(messageResponses);
+    const testCodes = keywordsTemp.map((keyword) => keyword.text);
+    const response = testCodes.join("");
 
-    res.json({ keywords });
+    res.json({ response });
   } catch (error) {
     console.log(error);
 
