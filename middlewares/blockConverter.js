@@ -6,14 +6,23 @@ const client = new Wit({
 
 const convertBlocksToTestCode = async (req, res, next) => {
   try {
-    const userInput = req.body.inputData;
-    console.log("입력한 input 값", userInput);
+    const lineBlocks = req.body;
+    const witAiRequestPromises = [];
 
-    const response = await client.message(userInput, {});
+    lineBlocks.forEach((lineBlock) => {
+      if (lineBlock.data.length === 1) {
+        witAiRequestPromises.push(client.message(lineBlock.data[0], {}));
+      } else {
+        const blockRequestPromises = lineBlock.data.map((block) =>
+          client.message(block, {}),
+        );
+        witAiRequestPromises.push(...blockRequestPromises);
+      }
+    });
 
-    console.log("wit.ai의 응답", response);
+    const witAiResponses = await Promise.all(witAiRequestPromises);
 
-    res.locals.testCode = response;
+    res.locals.witAiResponses = witAiResponses;
     next();
   } catch (error) {
     console.error("error:", error);
