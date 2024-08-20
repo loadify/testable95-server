@@ -26,9 +26,9 @@ const handleBlocks = async (req, res, next) => {
 
     const keywordsTemp = await Promise.all(messageResponses);
     const testCodes = keywordsTemp.map((keyword) => keyword.text);
-    const response = testCodes.join("");
+    const formattedTestCodes = testCodes.join("");
 
-    res.json({ response });
+    res.json({ formattedTestCodes });
   } catch (error) {
     console.log(error);
 
