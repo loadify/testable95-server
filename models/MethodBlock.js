@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 
-const methodBlockSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const MethodBlockSchema = new Schema({
   method: {
     type: String,
     required: true,
   },
 });
 
-const MethodBlock = mongoose.model("MethodBlock", methodBlockSchema);
+const MethodBlock = mongoose.model("MethodBlock", MethodBlockSchema);
 
 module.exports = MethodBlock;
