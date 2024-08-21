@@ -1,21 +1,16 @@
 const convertBlocksToNaturalLanguage = (lineBlocks) => {
   return lineBlocks.blockData
     .map((lineBlock) => {
-      let naturalLanguage = "";
-      const blockContents = [];
-
-      lineBlock.blocks.forEach((block) => {
+      const blockContents = lineBlock.blocks.reduce((blockContent, block) => {
         if (block.parameter === "id (#)") {
-          blockContents.push(`id(#) ${block.value}`);
+          blockContent.push(`id(#) ${block.value}`);
         } else if (block.type === "input") {
-          naturalLanguage += `${block.parameter} ${block.value}`;
+          blockContent.push(`${block.parameter} ${block.value}`);
         } else if (block.type === "method") {
-          naturalLanguage += block.method;
-          blockContents.push(naturalLanguage);
-          naturalLanguage = "";
+          blockContent.push(block.method);
         }
-      });
-
+        return blockContent;
+      }, []);
       return blockContents;
     })
     .flat();

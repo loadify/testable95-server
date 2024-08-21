@@ -1,5 +1,6 @@
 const assemblePlaywrightTestCodes = (testCode) => {
   const formattedTestCodes = testCode.join("");
+
   return formattedTestCodes
     .split(";")
     .filter(Boolean)
