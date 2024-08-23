@@ -11,7 +11,14 @@ const handleBlocks = async (req, res, next) => {
     const naturalLanguage = convertBlocksToNaturalLanguage(lineBlocks);
     const playwrightTestCode =
       await convertNaturalLanguageToCodes(naturalLanguage);
-    const formattedTestCodes = assemblePlaywrightTestCodes(playwrightTestCode);
+    const testCodes = assemblePlaywrightTestCodes(playwrightTestCode);
+
+    const startText =
+      "const { chromium } = require('playwright');\n(async() => { \n  try { \n";
+    const endText =
+      "\n    await browser.close();   } catch (error) { \n    console.error(error);   } \n})();";
+
+    const formattedTestCodes = startText + testCodes + endText;
 
     res.json({ formattedTestCodes });
   } catch (error) {
