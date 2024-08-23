@@ -4,7 +4,7 @@ const assemblePlaywrightTestCodes = (testCode) => {
   return formattedTestCodes
     .split(";")
     .filter(Boolean)
-    .map((part) => `await page${part};`)
+    .map((part) => `    await page${part};`)
     .join("");
 };
 

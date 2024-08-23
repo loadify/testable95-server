@@ -1,30 +1,31 @@
-const separateMethodBlocks = (blocks) => {
+const separateBlocks = (blocks) => {
   const methodBlocks = [];
-  const otherBlocks = [];
+  const inputBlocks = [];
 
   blocks.forEach((block) => {
     if (block.type === "method") {
       methodBlocks.push(block);
     } else {
-      otherBlocks.push(block);
+      inputBlocks.push(block);
     }
   });
 
-  return [...otherBlocks, ...methodBlocks];
+  return [...inputBlocks, ...methodBlocks];
 };
 
 const formatNaturalLanguage = (blocks) => {
   return blocks.reduce(
     (blockContent, block) => {
-      if (block.parameter === "id (#)") {
+      if (block.parameter === "id(#)") {
         blockContent.messages.push(`id(#) ${block.value}`);
       } else if (block.type === "input") {
         blockContent.accumulatedText += `${block.parameter} ${block.value}`;
       } else if (block.type === "method") {
-        blockContent.accumulatedText += block.method;
+        blockContent.accumulatedText += ` ${block.method}`;
         blockContent.messages.push(blockContent.accumulatedText);
         blockContent.accumulatedText = "";
       }
+
       return blockContent;
     },
     { accumulatedText: "", messages: [] },
@@ -34,7 +35,8 @@ const formatNaturalLanguage = (blocks) => {
 const convertBlocksToNaturalLanguage = (lineBlocks) => {
   return lineBlocks.blockData
     .map((lineBlock) => {
-      const sortedBlocks = separateMethodBlocks(lineBlock.blocks);
+      const sortedBlocks = separateBlocks(lineBlock.blocks);
+
       return formatNaturalLanguage(sortedBlocks);
     })
     .flat();
