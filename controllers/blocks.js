@@ -13,8 +13,7 @@ const handleBlocks = async (req, res, next) => {
       await convertNaturalLanguageToCodes(naturalLanguage);
     const testCodes = assemblePlaywrightTestCodes(playwrightTestCode);
 
-    const startText =
-      "const { chromium } = require('playwright');\n(async() => { \n  try { \n";
+    const startText = `const { chromium } = require("playwright");\n(async() => { \n  try { \n`;
     const endText =
       "\n    await browser.close();   } catch (error) { \n    console.error(error);   } \n})();";
 

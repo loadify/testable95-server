@@ -22,7 +22,7 @@ const convertNaturalLanguageToCodes = async (messages) => {
         return `.locator("#${entity}")`;
       }
 
-      return `.${intent}(${entity});`;
+      return `.${intent}("${entity}");`;
     } catch (error) {
       console.error(error);
 
