@@ -7,6 +7,11 @@ const MethodBlockSchema = new Schema({
     type: String,
     required: true,
   },
+
+  actions: {
+    type: [String],
+    required: true,
+  },
 });
 
 const MethodBlock = mongoose.model("MethodBlock", MethodBlockSchema);

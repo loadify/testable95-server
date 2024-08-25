@@ -7,6 +7,11 @@ const InputBlockSchema = new Schema({
     type: String,
     required: true,
   },
+
+  actions: {
+    type: [String],
+    required: true,
+  },
 });
 
 const InputBlock = mongoose.model("InputBlock", InputBlockSchema);
