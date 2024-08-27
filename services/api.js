@@ -4,7 +4,7 @@ const client = new Wit({
   accessToken: process.env.WIT_AI_SERVER_ACCESS_TOKEN,
 });
 
-const convertNaturalLanguageToCodes = async (messages) => {
+const processNaturalLanguage = async (messages) => {
   const playwrightCodeTemp = messages.map(async (message) => {
     try {
       const response = await client.message(message);
@@ -39,4 +39,4 @@ const convertNaturalLanguageToCodes = async (messages) => {
   return Promise.all(playwrightCodeTemp);
 };
 
-module.exports = convertNaturalLanguageToCodes;
+module.exports = processNaturalLanguage;
