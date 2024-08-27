@@ -13,14 +13,11 @@ const assemblePlaywrightTestCodes = (testCode) => {
             ".",
             locatorIndex + ".locator".length,
           );
-          const locatorPart =
-            endLocatorIndex !== -1
-              ? part.substring(locatorIndex, endLocatorIndex)
-              : part.substring(locatorIndex);
+          const locatorPart = part.substring(locatorIndex, endLocatorIndex);
           const restOfPart =
             endLocatorIndex !== -1 ? part.substring(endLocatorIndex) : "";
 
-          return `    await expect(${locatorPart})${restOfPart};`;
+          return `    await expect(${locatorPart}${restOfPart});`;
         }
         return `    await expect(page)${part};`;
       }
