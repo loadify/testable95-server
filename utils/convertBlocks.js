@@ -16,8 +16,10 @@ const separateBlocks = (blocks) => {
 const formatNaturalLanguage = (blocks) => {
   return blocks.reduce(
     (blockContent, block) => {
-      if (block.parameter === "id(#)") {
+      if (block.parameter === "id (#)") {
         blockContent.messages.push(`id(#) ${block.value}`);
+      } else if (block.parameter === "class (.)") {
+        blockContent.messages.push(`class(.) ${block.value}`);
       } else if (block.type === "input") {
         blockContent.accumulatedText += `${block.parameter} ${block.value}`;
       } else if (block.type === "method") {

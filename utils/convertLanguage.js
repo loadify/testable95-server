@@ -14,12 +14,24 @@ const convertNaturalLanguageToCodes = async (messages) => {
         entities["URL:URL"]?.[0]?.value ||
         entities["attribute:value"]?.[0]?.value;
 
-      if (!intent || !entity) {
+      if (!intent && !entity) {
         return "코드 변환에 실패하였습니다.";
+      }
+
+      if (
+        intent === "click" ||
+        intent === "waitFor" ||
+        intent === "toBeVisible"
+      ) {
+        return `.${intent}();`;
       }
 
       if (intent === "id") {
         return `.locator("#${entity}")`;
+      }
+
+      if (intent === "class") {
+        return `.locator(".${entity}")`;
       }
 
       return `.${intent}("${entity}");`;
