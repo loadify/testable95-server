@@ -5,8 +5,10 @@ const InputBlock = require("../models/InputBlock");
 
 const renderBlocks = async (req, res, next) => {
   try {
-    const methodBlocks = await MethodBlock.find();
-    const inputBlocks = await InputBlock.find();
+    const [methodBlocks, inputBlocks] = await Promise.all([
+      MethodBlock.find().lean(),
+      InputBlock.find().lean(),
+    ]);
 
     res.json({ methodBlocks, inputBlocks });
   } catch (error) {
