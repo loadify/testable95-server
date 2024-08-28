@@ -1,7 +1,10 @@
 const createError = require("http-errors");
 
-const processNaturalLanguage = require("../services/api");
-const { processLineBlocks, processTestCodes } = require("../utils/utils");
+const processNaturalLanguage = require("../services/witaiCodeGenerator");
+const {
+  processLineBlocks,
+  processTestCodes,
+} = require("../utils/blockProcessor");
 
 const TEST_CODE_TEMPLATE = `
 const { chromium } = require("playwright");
