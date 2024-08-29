@@ -49,16 +49,16 @@ const processTestCodes = (testCode) => {
         const locatorIndex = part.indexOf("locator");
 
         if (locatorIndex !== -1) {
-          const endLocatorIndex = part.indexOf(
-            ".",
-            locatorIndex + ".locator".length,
-          );
-          const locatorPart = part.substring(locatorIndex, endLocatorIndex);
-          const restOfPart =
-            endLocatorIndex !== -1 ? part.substring(endLocatorIndex) : "";
+          const endLocatorIndex = part.indexOf(")", locatorIndex);
 
-          return `    await expect(page.${locatorPart}${restOfPart});`;
+          const locatorPart = part.substring(locatorIndex, endLocatorIndex + 1);
+
+          const restOfPart =
+            endLocatorIndex !== -1 ? part.substring(endLocatorIndex + 1) : "";
+
+          return `    await expect(page.${locatorPart})${restOfPart};`;
         }
+
         return `    await expect(page)${part};`;
       }
       return `    await page${part};`;
