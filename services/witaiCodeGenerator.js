@@ -19,6 +19,7 @@ const processNaturalLanguage = async (messages) => {
       const intentActions = {
         click: () => ".click();",
         waitFor: () => ".waitFor();",
+        waitForTimeout: () => `.${intent}(${entity});`,
         toBeVisible: () => ".toBeVisible();",
         id: () => `.locator("#${entity}")`,
         class: () => `.locator(".${entity}")`,

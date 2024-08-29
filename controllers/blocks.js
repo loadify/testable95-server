@@ -7,15 +7,11 @@ const {
 } = require("../utils/blockProcessor");
 
 const TEST_CODE_TEMPLATE = `
-const { chromium } = require("playwright");
-(async () => {
-  try {
-    %TEST_CODE%
-    await browser.close();
-  } catch (error) {
-    console.error(error);
-  }
-})();
+import { test, expect } from '@playwright/test';
+test('Login test', async ({ page }) => {
+
+%TEST_CODE%
+});
 `.trim();
 
 const handleBlocks = async (req, res, next) => {

@@ -57,7 +57,7 @@ const processTestCodes = (testCode) => {
           const restOfPart =
             endLocatorIndex !== -1 ? part.substring(endLocatorIndex) : "";
 
-          return `    await expect(${locatorPart}${restOfPart});`;
+          return `    await expect(page.${locatorPart}${restOfPart});`;
         }
         return `    await expect(page)${part};`;
       }
