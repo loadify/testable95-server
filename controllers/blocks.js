@@ -7,8 +7,8 @@ const {
 } = require("../utils/blockProcessor");
 
 const TEST_CODE_TEMPLATE = `
-import { test, expect } from '@playwright/test';
-test('Login test', async ({ page }) => {
+import { test, expect } from "@playwright/test";
+test("Login test", async ({ page }) => {
 
 %TEST_CODE%
 });
